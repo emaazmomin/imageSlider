@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style>
+      .slider {
+        display: flex;
+        overflow-y: auto;
+      }
+      .slider::-webkit-scrollbar {
+        display: none;
+      }
+      .img-div {
+        border-radius: 20px;
+        min-width: 300px;
+        height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0px 10px;
+      }
+      .img-div:nth-child(odd) {
+        background: linear-gradient(rgb(41, 71, 71),rgb(255, 255, 255));
+      }
+      .img-div:nth-child(even) {
+        background: linear-gradient(rgb(133, 104, 249),rgb(228, 225, 241));
+      }
+    </style>
+  </head>
+  <body
+    style="background-color: black;color: white;"
+  >
+    <div class="main">
+      <div class="slider">
+        <div class="img-div">
+          <!-- <img src="wallpaperflare.com_wallpaper (4).jpg" alt="" /> -->
+          <h1>First</h1>
+        </div>
+        <div class="img-div">
+          <!-- <img src="wallpaperflare.com_wallpaper (5).jpg" alt="" /> -->
+          <h1>Second</h1>
+        </div>
+        <div class="img-div">
+          <!-- <img src="wallpaperflare.com_wallpaper (6).jpg" alt="" /> -->
+          <h1>Third</h1>
+        </div>
+        <div class="img-div">
+          <!-- <img src="wallpaperflare.com_wallpaper (6).jpg" alt="" /> -->
+          <h1>Fourth</h1>
+        </div>
+        <div class="img-div">
+          <!-- <img src="wallpaperflare.com_wallpaper (6).jpg" alt="" /> -->
+          <h1>Fifth</h1>
+        </div>
+        <div class="img-div">
+          <!-- <img src="wallpaperflare.com_wallpaper (6).jpg" alt="" /> -->
+          <h1>Sixth</h1>
+        </div>
+        <div class="img-div">
+          <!-- <img src="wallpaperflare.com_wallpaper (6).jpg" alt="" /> -->
+          <h1>Seventh</h1>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
