@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
     <style>
+      .main {
+        position: relative;
+        margin: 0px 10px;
+      }
       .slider {
         display: flex;
         overflow-y: auto;
@@ -14,55 +18,162 @@
       }
       .img-div {
         border-radius: 20px;
-        min-width: 300px;
+        min-width: 100%;
         height: 300px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0px 10px;
+        /* margin: 0px 10px; */
+        transition: all 0.5s ease-in-out;
       }
       .img-div:nth-child(odd) {
-        background: linear-gradient(rgb(41, 71, 71),rgb(255, 255, 255));
+        background: linear-gradient(rgb(41, 71, 71), rgb(255, 255, 255));
       }
       .img-div:nth-child(even) {
-        background: linear-gradient(rgb(133, 104, 249),rgb(228, 225, 241));
+        background: linear-gradient(rgb(133, 104, 249), rgb(228, 225, 241));
+      }
+      #left {
+        position: absolute;
+        top: 42%;
+        left: 10px;
+      }
+      #right {
+        position: absolute;
+        top: 42%;
+        right: 10px;
+      }
+      #dot-div {
+        position: absolute;
+        bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* border: 2px solid black; */
+        width: 100%;
+      }
+      .dots {
+        width: 15px;
+        height: 15px;
+        margin: 0px 3px;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 20px;
+      }
+      .active {
+        background-color: black;
       }
     </style>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
   </head>
-  <body
-    style="background-color: black;color: white;"
-  >
+  <body style="background-color: black; color: white">
     <div class="main">
       <div class="slider">
         <div class="img-div">
-          <!-- <img src="wallpaperflare.com_wallpaper (4).jpg" alt="" /> -->
           <h1>First</h1>
         </div>
         <div class="img-div">
-          <!-- <img src="wallpaperflare.com_wallpaper (5).jpg" alt="" /> -->
           <h1>Second</h1>
         </div>
         <div class="img-div">
-          <!-- <img src="wallpaperflare.com_wallpaper (6).jpg" alt="" /> -->
           <h1>Third</h1>
         </div>
         <div class="img-div">
-          <!-- <img src="wallpaperflare.com_wallpaper (6).jpg" alt="" /> -->
           <h1>Fourth</h1>
         </div>
         <div class="img-div">
-          <!-- <img src="wallpaperflare.com_wallpaper (6).jpg" alt="" /> -->
           <h1>Fifth</h1>
         </div>
         <div class="img-div">
-          <!-- <img src="wallpaperflare.com_wallpaper (6).jpg" alt="" /> -->
           <h1>Sixth</h1>
         </div>
         <div class="img-div">
-          <!-- <img src="wallpaperflare.com_wallpaper (6).jpg" alt="" /> -->
           <h1>Seventh</h1>
         </div>
       </div>
+      <div id="left">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="46"
+          height="46"
+          fill="currentColor"
+          class="bi bi-chevron-left"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+          />
+        </svg>
+      </div>
+      <div id="right">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="46"
+          height="46"
+          fill="currentColor"
+          class="bi bi-chevron-right"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+          />
+        </svg>
+      </div>
+      <div id="dot-div">
+        <div class="dots active"></div>
+        <div class="dots"></div>
+        <div class="dots"></div>
+        <div class="dots"></div>
+        <div class="dots"></div>
+        <div class="dots"></div>
+        <div class="dots"></div>
+      </div>
     </div>
+    <script>
+      let slide = document.querySelectorAll(".img-div");
+      let leftbtn = document.getElementById("left");
+      let rytbtn = document.getElementById("right");
+      let percent = 100;
+      let slideLen = Number(slide.length);
+      let slideNum = 1;
+      let dots = document.querySelectorAll(".dots");
+
+      leftbtn.addEventListener("mousedown", (e) => {
+        if (slideNum > 1) {
+          slideNum -= 1;
+          for (let i = 0; i < slideLen; i++) {
+            slide[i].style.transform = `translateX(-100%)`;
+            slide[i].style.transform = `translateX(-${percent - 200}%)`;
+          }
+          dots[slideNum - 1].classList.toggle("active");
+          dots[slideNum].classList.remove("active");
+          percent -= 100;
+        }
+      });
+
+      rytbtn.addEventListener("mousedown", (e) => {
+        console.log("right");
+        if (slideNum < slideLen) {
+          slideNum += 1;
+          for (let i = 0; i < slide.length; i++) {
+            slide[i].style.transform = `translateX(-${percent}%)`;
+          }
+          percent += 100;
+          dots[slideNum - 1].classList.toggle("active");
+          dots[slideNum - 2].classList.remove("active");
+        }
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
